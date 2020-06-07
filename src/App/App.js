@@ -6,6 +6,9 @@ import './App.scss';
 
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import Auth from '../components/pages/Auth/Auth';
+import MyStuff from '../components/pages/MyStuff/MyStuff';
+import EditStuff from '../components/pages/EditStuff/EditStuff';
+import NewStuff from '../components/pages/NewStuff/NewStuff';
 
 import fbConnection from '../helpers/connection';
 
@@ -36,6 +39,9 @@ class App extends React.Component {
         <MyNavbar />
         <h2>INSIDE APP COMPONENT</h2>
         <Auth />
+        <MyStuff />
+        <NewStuff />
+        <EditStuff />
       </div>
     );
   }
