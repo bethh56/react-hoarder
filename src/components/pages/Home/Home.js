@@ -1,26 +1,40 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import './Home.scss';
+import ItemCard from '../../shared/ItemCard/ItemCard';
+import authData from '../../../helpers/data/authData';
+import stuffData from '../../../helpers/data/stuffData';
 
 class Home extends React.Component {
-  editEvent = (e) => {
-    e.preventDefault();
-    const editId = 'asdhjkf';
-    this.props.history.push(`/edit/${editId}`);
+  state = {
+    items: [],
   }
 
-  render() {
-    return (
+ getItems = () => {
+   const uid = authData.getUid();
+   stuffData.getItemByUid(uid)
+     .then((items) => this.setState({ items }))
+     .catch((err) => console.error('unable to get items', err));
+ }
+
+ componentDidMount() {
+   this.getItems();
+ }
+
+ render() {
+   const { items } = this.state;
+   const buildItemCards = items.map((item) => (
+      <ItemCard key={item.id} item={item}/>
+   ));
+   return (
       <div className="Home">
         <h1>Home</h1>
-        <button className="btn btn-primary" onClick={this.editEvent}>Edit</button>
-        <Link to='/single/sdfhjkal'> View Single </Link>
-        <Link to='/new'> View New </Link>
+        <div className="d-flex flex-wrap">
+          {buildItemCards}
+        </div>
       </div>
-    );
-  }
+   );
+ }
 }
 
 export default Home;
