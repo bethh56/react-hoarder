@@ -1,16 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './ItemCard.scss';
 
 class ItemCard extends React.Component {
   render() {
     const { item } = this.props;
+    const singleLink = `/single/${item.id}`;
     return (
-      <div className="ItemCard col-2">
-        <div class="card">
-         <img class="card-img-top" src={item.itemImage} alt={item.itemName}></img>
-          <div class="card-body">
-          <h6 class="card-title">{item.itemName}</h6>
+      <div className="ItemCard col-4">
+        <div className="card">
+         <img className="card-img-top" src={item.itemImage} alt={item.itemName}></img>
+          <div className="card-body">
+          <h6 className="card-title">{item.itemName}</h6>
+          <Link className="btn btn-dark" to={singleLink}> View </Link>
           </div>
         </div>
       </div>
