@@ -6,10 +6,10 @@ import './ItemCard.scss';
 class ItemCard extends React.Component {
   render() {
     const { item } = this.props;
-    const singleLink = `/single/${item.id}`;
+    const singleLink = `/item/${item.id}`;
     return (
       <div className="ItemCard col-4">
-        <div className="card">
+        <div className="card border-dark m-2 p-2">
          <img className="card-img-top" src={item.itemImage} alt={item.itemName}></img>
           <div className="card-body">
           <h6 className="card-title">{item.itemName}</h6>
