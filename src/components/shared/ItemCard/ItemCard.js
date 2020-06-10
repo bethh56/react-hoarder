@@ -5,7 +5,7 @@ import './ItemCard.scss';
 
 class ItemCard extends React.Component {
   render() {
-    const { item } = this.props;
+    const { item, deleteItem } = this.props;
     const singleLink = `/item/${item.id}`;
     return (
       <div className="ItemCard col-4">
@@ -13,7 +13,8 @@ class ItemCard extends React.Component {
          <img className="card-img-top" src={item.itemImage} alt={item.itemName}></img>
           <div className="card-body">
           <h6 className="card-title">{item.itemName}</h6>
-          <Link className="btn btn-dark" to={singleLink}> View </Link>
+          <Link className="btn btn-dark m-1" to={singleLink}> View </Link>
+          <button className="btn btn-danger m-1" onClick={() => deleteItem(item.id)}>Delete</button>
           </div>
         </div>
       </div>
