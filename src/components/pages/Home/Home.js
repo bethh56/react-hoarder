@@ -21,10 +21,16 @@ class Home extends React.Component {
    this.getItems();
  }
 
+ deleteItem = (itemId) => {
+   stuffData.deleteStuff(itemId)
+     .then(() => this.getItems())
+     .catch((err) => console.error('unable to delete', err));
+ }
+
  render() {
    const { items } = this.state;
    const buildItemCards = items.map((item) => (
-      <ItemCard key={item.id} item={item}/>
+      <ItemCard key={item.id} item={item} deleteItem={this.deleteItem}/>
    ));
    return (
       <div className="Home">
