@@ -15,14 +15,22 @@ class SingleStuff extends React.Component {
       .catch((err) => console.error('unable to get single item: ', err));
   }
 
+  deleteItem = (e) => {
+    const { itemId } = this.props.match.params;
+    stuffData.deleteStuff(itemId)
+      .then(() => this.props.history.push('/home'))
+      .catch((err) => console.error('unable to delete', err));
+  }
+
   render() {
     const { item } = this.state;
     return (
       <div className="col-6 mx-auto mt-2">
-          <div className="card border-dark m-1">
+        <h2 className="m-3">{item.itemName}</h2>
+        <button className="btn btn-danger m-1 mx-auto" onClick={this.deleteItem}>Delete</button>
+          <div className="card m-1">
          <img className="card-img-top" src={item.itemImage} alt={item.itemName}></img>
           <div className="card-body">
-          <h4 className="card-title">{item.itemName}</h4>
           <p>{item.itemDescription}</p>
           </div>
         </div>
